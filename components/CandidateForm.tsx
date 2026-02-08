@@ -7,7 +7,7 @@ export default function CandidateForm() {
     const [formData, setFormData] = useState({
         name: '',
         gender: '',
-        birth_year: '',
+        birth_year: 1990,
         region_lv1: '',
         region_lv2: '',
         job_lv1: '',
@@ -39,7 +39,7 @@ export default function CandidateForm() {
             setFormData({
                 name: '',
                 gender: '',
-                birth_year: '',
+                birth_year: 1990,
                 region_lv1: '',
                 region_lv2: '',
                 job_lv1: '',
