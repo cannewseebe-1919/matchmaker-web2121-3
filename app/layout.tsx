@@ -26,7 +26,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           <div className="max-w-7xl mx-auto px-4 flex justify-between items-center">
             <Link href="/dashboard" className="text-xl font-bold hover:underline">40🐮</Link>
             {userEmail && (
-              <span className="text-sm bg-indigo-500 px-2 py-1 rounded">{userEmail}</span>
+              <span className="text-sm bg-indigo-500 px-2 py-1 rounded">*{userEmail}</span>
             )}
             <nav>
               <a href="/candidates" className="hover:underline mr-4">
