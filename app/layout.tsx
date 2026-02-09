@@ -1,6 +1,7 @@
 'use client'
 import './globals.css' // Tailwind 글로벌 스타일
 import { ReactNode, useEffect, useState } from 'react'
+import Link from 'next/link'
 import { supabase } from '@/lib/supabaseClient'
 
 const metadata = {
@@ -23,7 +24,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         {/* 헤더 */}
         <header className="bg-indigo-600 text-white py-4 shadow-md">
           <div className="max-w-7xl mx-auto px-4 flex justify-between items-center">
-            <h1 className="text-xl font-bold">40🐮</h1>
+            <Link href="/" className="text-xl font-bold hover:underline">40🐮</Link>
             {userEmail && (
               <span className="text-sm bg-indigo-500 px-2 py-1 rounded">{userEmail}</span>
             )}
