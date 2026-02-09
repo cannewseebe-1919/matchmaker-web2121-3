@@ -24,7 +24,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         {/* 헤더 */}
         <header className="bg-indigo-600 text-white py-4 shadow-md">
           <div className="max-w-7xl mx-auto px-4 flex justify-between items-center">
-            <Link href="/" className="text-xl font-bold hover:underline">40🐮</Link>
+            <Link href="/dashboard" className="text-xl font-bold hover:underline">40🐮</Link>
             {userEmail && (
               <span className="text-sm bg-indigo-500 px-2 py-1 rounded">{userEmail}</span>
             )}
