@@ -1,4 +1,6 @@
 'use client'
+// React import removed as it's unnecessary with Next.js 13+ and React 19
+// removed duplicate import
 
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
@@ -36,10 +38,11 @@ export default function LoginPage() {
   }
 
   return (
-    <div style={{ maxWidth: 400, margin: '100px auto' }}>
-      <h1>중매쟁이 되기</h1>
+    <div className="max-w-md mx-auto mt-20 p-6 bg-white rounded-lg shadow-md">
+      <h1 className="text-2xl font-bold text-center mb-6">중매쟁이 되기</h1>
 
       <input
+        className="w-full p-2 border border-gray-300 rounded mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
         placeholder="이메일"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
@@ -47,20 +50,25 @@ export default function LoginPage() {
 
       <input
         type="password"
+        className="w-full p-2 border border-gray-300 rounded mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
         placeholder="비밀번호"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
 
-      <div style={{ marginTop: 10 }}>
-        <button onClick={handleLogin} disabled={loading}>
+      <div className="flex space-x-4 mt-4">
+        <button
+          onClick={handleLogin}
+          disabled={loading}
+          className="flex-1 bg-blue-600 text-white py-2 rounded hover:bg-blue-700 disabled:opacity-50"
+        >
           로그인
         </button>
 
         <button
           onClick={handleSignUp}
           disabled={loading}
-          style={{ marginLeft: 10 }}
+          className="flex-1 bg-gray-600 text-white py-2 rounded hover:bg-gray-700 disabled:opacity-50"
         >
           회원가입
         </button>
