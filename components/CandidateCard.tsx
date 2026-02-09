@@ -9,13 +9,20 @@ export default function CandidateCard({ candidate }: any) {
     const closeModal = () => setIsOpen(false);
     const handleDelete = async () => {
         if (!confirm('정말 삭제하시겠습니까?')) return;
+        // Delete related photos first
+        const { error: photoError } = await supabase.from('candidate_photos').delete().eq('candidate_id', candidate.id);
+        if (photoError) {
+            alert('사진 삭제 실패: ' + photoError.message);
+            return;
+        }
+        // Then delete candidate
         const { error } = await supabase.from('candidates').delete().eq('id', candidate.id);
         if (error) {
-            alert('삭제 실패: ' + error.message);
+            alert('후보자 삭제 실패: ' + error.message);
         } else {
-            alert('삭제되었습니다.');
+            alert('후보자가 삭제되었습니다.');
             closeModal();
-            // optional: reload page to reflect changes
+            // Refresh list
             window.location.reload();
         }
     };
