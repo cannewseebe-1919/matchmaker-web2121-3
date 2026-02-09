@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabaseClient'
+import Link from 'next/link'
 
 export default function DashboardPage() {
   const router = useRouter()
@@ -26,10 +27,23 @@ export default function DashboardPage() {
   if (!user) return <p>로딩중...</p>
 
   return (
-    <div>
-      <h1>대시보드</h1>
-      <p>로그인한 이메일: {user.email}</p>
-      <button onClick={handleLogout}>로그아웃</button>
+    <div className="p-6">
+      <div className="bg-gray-100 p-2 text-right mb-4 rounded">
+        로그인된 아이디: {user.email}
+      </div>
+      <h1 className="text-2xl font-bold mb-4">대시보드</h1>
+      <p className="mb-4">로그인한 이메일: {user.email}</p>
+      <div className="flex space-x-4 mb-4">
+        <Link href="/candidates" className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+          지인목록
+        </Link>
+        <Link href="/candidates/new" className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+          지인등록
+        </Link>
+      </div>
+      <button onClick={handleLogout} className="bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700">
+        로그아웃
+      </button>
     </div>
   )
 }
