@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { createCandidate } from '@/lib/createCandidate'
 
+
 export default function CandidateForm() {
     const [formData, setFormData] = useState({
         name: '',
