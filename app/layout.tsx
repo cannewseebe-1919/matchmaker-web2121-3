@@ -1,19 +1,32 @@
+'use client'
 import './globals.css' // Tailwind 글로벌 스타일
-import { ReactNode } from 'react'
+import { ReactNode, useEffect, useState } from 'react'
+import { supabase } from '@/lib/supabaseClient'
 
-export const metadata = {
+const metadata = {
   title: '중매쟁이 서비스',
   description: '지인 관리 및 매칭 서비스',
 }
 
 export default function RootLayout({ children }: { children: ReactNode }) {
+  const [userEmail, setUserEmail] = useState<string>('')
+
+  useEffect(() => {
+    supabase.auth.getUser().then(({ data }) => {
+      if (data.user) setUserEmail(data.user.email ?? '')
+    })
+  }, [])
+
   return (
     <html lang="ko">
       <body className="bg-gray-100 min-h-screen font-sans">
         {/* 헤더 */}
         <header className="bg-indigo-600 text-white py-4 shadow-md">
           <div className="max-w-7xl mx-auto px-4 flex justify-between items-center">
-            <h1 className="text-xl font-bold">중매쟁이 서비스</h1>
+            <h1 className="text-xl font-bold">40🐮</h1>
+            {userEmail && (
+              <span className="text-sm bg-indigo-500 px-2 py-1 rounded">{userEmail}</span>
+            )}
             <nav>
               <a href="/candidates" className="hover:underline mr-4">
                 지인 목록
