@@ -1,11 +1,24 @@
 'use client';
 import { useState } from 'react';
+import { supabase } from '@/lib/supabaseClient';
 
 export default function CandidateCard({ candidate }: any) {
     const photos = candidate.candidate_photos;
     const [isOpen, setIsOpen] = useState(false);
     const openModal = () => setIsOpen(true);
     const closeModal = () => setIsOpen(false);
+    const handleDelete = async () => {
+        if (!confirm('정말 삭제하시겠습니까?')) return;
+        const { error } = await supabase.from('candidates').delete().eq('id', candidate.id);
+        if (error) {
+            alert('삭제 실패: ' + error.message);
+        } else {
+            alert('삭제되었습니다.');
+            closeModal();
+            // optional: reload page to reflect changes
+            window.location.reload();
+        }
+    };
     return (
         <>
             <div
@@ -46,6 +59,9 @@ export default function CandidateCard({ candidate }: any) {
                                 ))}
                             </div>
                         )}
+                        <button onClick={handleDelete} className="mt-4 w-full bg-red-600 text-white py-2 rounded hover:bg-red-700">
+                            삭제하기
+                        </button>
                     </div>
                 </div>
             )}
